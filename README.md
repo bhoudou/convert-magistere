@@ -66,3 +66,11 @@ pip install beautifulsoup4 lxml
 ---
 
 **Made with patience, café, et ChatGPT.**
+
+## 🧼 Exemple avant/après nettoyage
+
+### 🟣 Avant (contenu issu de Magistère)
+![Avant nettoyage](avant_resized.png)
+
+### 🔵 Après nettoyage par `convert-magistere`
+![Après nettoyage](apres_resized.png)
