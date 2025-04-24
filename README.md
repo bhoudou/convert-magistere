@@ -74,3 +74,15 @@ pip install beautifulsoup4 lxml
 
 ### 🔵 Après nettoyage par `convert-magistere`
 ![Après nettoyage](apres_resized.png)
+
+ℹ️ Remarque : certains ajustements manuels peuvent être nécessaires, par exemple :
+
+<br>[fa-clock-o fa-lg]
+&nbsp;
+<p style="text-align: left;">Durée : <strong>1 heure 30</strong>
+</p>
+
+👉 à corriger en :
+
+<p style="text-align: left;">[fa-clock-o fa-lg] &nbsp; Durée : <strong>1 heure 30</strong></p>
+
