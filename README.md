@@ -81,8 +81,20 @@ pip install beautifulsoup4 lxml
 &nbsp;
 <p style="text-align: left;">Durée : <strong>1 heure 30</strong>
 </p>
+code initial :
+
+```bash
+<br>[fa-clock-o fa-lg]
+&nbsp;
+<p style="text-align: left;">Durée : <strong>1 heure 30</strong>
+</p>
+```
 
 👉 à corriger en :
 
 <p style="text-align: left;">[fa-clock-o fa-lg] &nbsp; Durée : <strong>1 heure 30</strong></p>
 
+code corrigé :
+```bash
+<p style="text-align: left;">[fa-clock-o fa-lg] &nbsp; Durée : <strong>1 heure 30</strong></p>
+```
