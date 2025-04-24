@@ -5,10 +5,11 @@ Outil de conversion et nettoyage de fichiers `.mbz` Moodle (Magistère-friendly)
 ## Fonctions principales :
 
 - Convertit les activités `label` et `labellud` en `page`
-- Nettoie les contenus HTML (`<intro>`, `<content>`) dans tous les modules
+- Nettoie les contenus HTML (`<intro>`, `<content>`) dans tous les modules en retirant tableaux et couleurs
 - Corrige les fichiers `files.xml`, `moodle_backup.xml` et `inforef.xml`
 - Crée une nouvelle archive `.mbz` compatible avec Moodle
 - Mode `.exe` disponible via PyInstaller
+- Par défaut le fichier à convertir doit etre nommé `cours.mbz`
 
 ---
 
