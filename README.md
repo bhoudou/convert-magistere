@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Magistère%20Ready-✔️-green?style=flat-square" alt="Magistère Ready">
+  <img src="https://img.shields.io/badge/Made%20With-Café ☕-orange?style=flat-square">
+  <img src="https://img.shields.io/badge/Icons-fa--icons-blue?style=flat-square">
+</p>
+
 # 🔥 Convert-magistere
 
 Outil de conversion et nettoyage de fichiers `.mbz` Moodle (Magistère-friendly).
@@ -59,4 +65,4 @@ pip install beautifulsoup4 lxml
 
 ---
 
-**Made with patience, café, et une pincée de Magistère.**
+**Made with patience, café, et ChatGPT.**
