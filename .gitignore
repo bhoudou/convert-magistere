@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.exe
+*.tar
+*.mbz
+cours_decompresse/
+dist/
+build/
+*.spec
