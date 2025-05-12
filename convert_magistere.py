@@ -51,40 +51,43 @@ def extract_mbz():
         tar.extractall(DEST_DIR)
     print(f"[✓] Archive extraite dans {DEST_DIR}/")
 
+def smart_flatten_table(table):
+    lines = []
+    for row in table.find_all("tr"):
+        cells = row.find_all(["td", "th"])
+        if not cells:
+            continue
+
+        row_text = "&nbsp;".join(cell.decode_contents().strip() for cell in cells)
+        if row_text.strip() and not all(c in ["&nbsp;", ""] for c in row_text.split("&nbsp;")):
+            lines.append(f"<p>{row_text}</p><br>")
+
+    return "\n".join(lines)
+
+
 def clean_html(content, escape_output=True):
+    import html
+    from bs4 import BeautifulSoup
+
     decoded = html.unescape(content)
     soup = BeautifulSoup(decoded, "html.parser")
 
-    # 🔁 Remplacement des <table> par <p> + <br> avec contenu préservé
     for table in soup.find_all("table"):
-        paragraph = soup.new_tag("p")
-        for row in table.find_all("tr"):
-            row_html_parts = []
-            for cell in row.find_all(["td", "th"]):
-                cell_content = "".join(str(c) for c in cell.contents)
-                row_html_parts.append(cell_content)
-            line_html = "&nbsp;".join(row_html_parts)
-            paragraph.append(BeautifulSoup(line_html + "<br>", "html.parser"))
-        table.replace_with(paragraph)
+        flat = smart_flatten_table(table)
+        table.replace_with(BeautifulSoup(flat, "html.parser"))
 
-    # 🔧 Supprimer les styles de couleur (mais garder les balises utiles)
+    # Supprimer les styles colorés uniquement
     for tag in soup.find_all():
-        if 'style' in tag.attrs:
-            style = tag['style']
-            if 'color:' in style:
-                del tag.attrs['style']
+        if 'style' in tag.attrs and 'color:' in tag.attrs['style']:
+            del tag.attrs['style']
         if 'color' in tag.attrs:
             del tag.attrs['color']
 
-    # 💡 Déballer les <span> pour éviter les styles résiduels
     for span in soup.find_all("span"):
         span.unwrap()
 
-    # 🧼 Échapper uniquement si utilisé dans un <content> XML (page)
-    if escape_output:
-        return html.escape(str(soup))
-    else:
-        return str(soup)
+    return html.escape(str(soup)) if escape_output else str(soup)
+
 
     
 def patch_files_xml(xml_path):
@@ -174,7 +177,7 @@ def transform_activity(activity_path, modulename):
     page_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <activity id="{id}" moduleid="{moduleid}" modulename="page" contextid="{contextid}">
 <page id="{id}">
-<name>{name}</name>
+<name>{html.escape(name)}</name>
 <intro></intro>
 <introformat>1</introformat>
 <content>{content_html}</content>
