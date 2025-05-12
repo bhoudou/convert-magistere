@@ -174,7 +174,7 @@ def transform_activity(activity_path, modulename):
     page_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <activity id="{id}" moduleid="{moduleid}" modulename="page" contextid="{contextid}">
 <page id="{id}">
-<name>{name}</name>
+<name>{html.escape(name)}</name>
 <intro></intro>
 <introformat>1</introformat>
 <content>{content_html}</content>
